@@ -12,8 +12,12 @@ namespace API_Sat_2023_Primer.DAL
         {
             base.OnModelCreating(modelBuilder);
             //modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique(); //evita nombres duplicados 
-            object value = modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<State>().HasIndex("Name", "CountryId" ).IsUnique(); //Indices compuestos 
+
         }
         public DbSet<Country> Countries { get; set; }
+
+        public DbSet<State> States { get; set; }
     }
 }
